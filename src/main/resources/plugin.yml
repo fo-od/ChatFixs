@@ -1,0 +1,10 @@
+name: ChatPrefix
+description: $description
+prefix: ChatPrefix
+version: '${version}'
+
+main: dev.fooduhh.chatPrefix.ChatPrefix
+api-version: '26.1.2'
+load: STARTUP
+
+authors: [ food ]
