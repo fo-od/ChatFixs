@@ -1,6 +1,6 @@
 name: Release
 
-on: [ workflow_dispatch, push ]
+on: [ workflow_dispatch ]
 
 jobs:
   release:
@@ -19,13 +19,17 @@ jobs:
           distribution: 'adopt'
       - name: Build with Gradle
         run: ./gradlew build
-      - name: Get Version from Properties
-        run: echo "version=$(./gradlew printVersion -q)" >> $GITHUB_OUTPUT
-        id: version
+      - name: Get Project Info from Gradle
+        run: |
+          PROPS="$(./gradlew properties -q)"
+          echo "version=$(printf '%s\n' "$PROPS" | grep '^version:' | sed 's/^version: //')" >> $GITHUB_OUTPUT
+          echo "name=$(printf '%s\n' "$PROPS" | grep '^name:' | sed 's/^name: //')" >> $GITHUB_OUTPUT
+        id: project
       - name: Create Release
         uses: ncipollo/release-action@v1.21.0
         with:
-          name: "ChatFixs v${{ steps.version.outputs.version }}"
+          name: "${{ steps.project.outputs.name }} v${{ steps.project.outputs.version }}"
+          tag: "v${{ steps.project.outputs.version }}"
         id: create_release
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -35,6 +39,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: "build/libs/ChatFixs-${{ steps.version.outputs.version }}.jar"
-          asset_name: ChatFixs-${{ steps.version.outputs.version }}.jar
+          asset_path: "build/libs/${{ steps.project.outputs.name }}-${{ steps.project.outputs.version }}.jar"
+          asset_name: ${{ steps.project.outputs.name }}-${{ steps.project.outputs.version }}.jar
           asset_content_type: application/java-archive
