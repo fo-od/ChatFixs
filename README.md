@@ -11,3 +11,6 @@ Commands:
 > Prefixes for each player are stored in the plugin's `config.yml`.
 
 There is no configuration, or permissions. This plugin was intended for my personal server. (theres probably a better plugin than this anyways)
+
+## Example Usage:
+![Example Usage](example.png)

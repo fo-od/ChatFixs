@@ -1,9 +1,9 @@
-name: ChatPrefix
+name: ChatFixs
 description: $description
-prefix: ChatPrefix
+prefix: ChatFixs
 version: '${version}'
 
-main: dev.fooduhh.chatPrefix.ChatPrefix
+main: dev.fooduhh.chatFixs.ChatFixs
 api-version: '26.1.2'
 load: STARTUP
 

@@ -31,4 +31,12 @@ tasks {
             expand(props)
         }
     }
+
+    register("printVersion") {
+        description = "Print the project version."
+        val version = version
+        doLast {
+            println(version)
+        }
+    }
 }

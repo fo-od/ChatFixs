@@ -1,1 +1,1 @@
-rootProject.name = "ChatPrefix"
+rootProject.name = "ChatFixs"
