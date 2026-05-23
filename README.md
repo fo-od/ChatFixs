@@ -1,5 +1,5 @@
 # ChatPrefix
-A Paper plugin that lets users set a prefix for their chat messages!
+A 26.1.2 Paper plugin that lets users set a prefix for their chat messages!
 > [!NOTE]
 > The prefix is NOT for the player's name, it is for their chat message content.
 
