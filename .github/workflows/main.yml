@@ -21,10 +21,12 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
       - name: Get Version from Properties
-        run: echo "::set-output name=version::$(./gradlew printVersion -q)"
+        run: echo "version=$(./gradlew printVersion -q)" >> $GITHUB_OUTPUT
         id: version
       - name: Create Release
         uses: ncipollo/release-action@v1.21.0
+        with:
+          name: "ChatFixs v${{ steps.version.outputs.version }}"
         id: create_release
         env:
           GITHUB_TOKEN: ${{ github.token }}
