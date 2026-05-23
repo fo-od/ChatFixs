@@ -17,7 +17,6 @@ public final class ChatFixs extends JavaPlugin {
     @Override
     public void onEnable() {
         saveResource("fixs.yml", false);
-        saveDefaultConfig();
 
         Bukkit.getPluginManager().registerEvents(listener, this);
 
